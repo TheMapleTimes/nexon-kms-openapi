@@ -1,5 +1,8 @@
 package com.kmstimes.nexon.validator;
 
+/**
+ * API 키가 "test_" 또는 "live_"로 시작하는지 확인합니다.
+ */
 public class ApiKeyValidator {
 
     /**

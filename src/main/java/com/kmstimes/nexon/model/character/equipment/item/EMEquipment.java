@@ -7,7 +7,7 @@ import com.kmstimes.nexon.model.character.equipment.item.option.ItemExceptionalO
 import com.kmstimes.nexon.model.character.equipment.item.option.ItemTotalOption;
 
 /**
- * 메이플스토리 에반 드래곤 & 매카닉 장비 정보를 담는 데이터 클래스입니다.
+ * 메이플스토리 에반 드래곤 &amp; 매카닉 장비 정보를 담는 데이터 클래스입니다.
  *
  * @param item_equipment_part      장비 부위 명
  * @param equipment_slot           장비 슬롯 위치

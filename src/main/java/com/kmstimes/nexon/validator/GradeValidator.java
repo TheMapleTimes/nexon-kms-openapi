@@ -2,6 +2,9 @@ package com.kmstimes.nexon.validator;
 
 import com.kmstimes.nexon.enums.SkillGrade;
 
+/**
+ * 전직 차수가 사용 가능한 값인지 확인합니다.
+ */
 public class GradeValidator {
 
     /**

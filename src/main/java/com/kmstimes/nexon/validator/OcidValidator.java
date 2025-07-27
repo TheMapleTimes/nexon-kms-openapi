@@ -1,5 +1,8 @@
 package com.kmstimes.nexon.validator;
 
+/**
+ * 캐릭터 식별자가 유효한 값인지 확인합니다.
+ */
 public class OcidValidator {
 
     /**

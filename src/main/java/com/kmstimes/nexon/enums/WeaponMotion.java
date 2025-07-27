@@ -10,19 +10,34 @@ import java.time.LocalDate;
  * <ul>
  * <li>조회된 캐릭터 외형 이미지 URL에 쿼리 파리미터를 사용하여 캐릭터 이미지의 동작이나 감정표현을 변경하실 수 있습니다.</li>
  * <li>쿼리 파라미터는 API로 조회된 URL 뒤에 물음표(?)와 "Key=value" 쌍을 입력하여 조회합니다.</li>
- * <li>여러 개의 쿼리 파라미터를 전달하려면 파라미터 사이에 앰퍼샌드(&)을 추가하여 하나의 문자열로 입력합니다.</li>
+ * <li>여러 개의 쿼리 파라미터를 전달하려면 파라미터 사이에 앰퍼샌드(&amp;)을 추가하여 하나의 문자열로 입력합니다.</li>
  * <li>액션 및 감정표현에 프레임 값("Key=value.number")을 입력하여 아바타 이미지를 프레임 별로 조회 가능합니다. (20250116 추가)</li>
- * <li>예시: https://open.api.nexon.com/static/maplestory/character/look/ABCDEFG?action=A00.2&emotion=E00&width=200&height=200</li>
+ * <li>예시: https://open.api.nexon.com/static/maplestory/character/look/ABCDEFG?action=A00.2&amp;emotion=E00&amp;width=200&amp;height=200</li>
  * </ul>
  * <p>
  * 이 열거형은 {@link com.kmstimes.nexon.api.CharacterApi#getCharacterBasic(String, LocalDate)} 에서 얻은
  * {@link BasicResponse#character_image} 를 사용하여 동작을 변경합니다.
  */
 public enum WeaponMotion {
+    /**
+     * 기본 무기 모션 (default, 무기 타입에 따른 모션)
+     */
     DEFAULT("W00"),
+    /**
+     * 한손 무기 모션
+     */
     ONE_HAND("W01"),
+    /**
+     * 두손 무기 모션
+     */
     TWO_HAND("W02"),
+    /**
+     * 총 무기 모션
+     */
     GUN("W03"),
+    /**
+     * 무기 제외
+     */
     NONE("W04");
 
     /**
