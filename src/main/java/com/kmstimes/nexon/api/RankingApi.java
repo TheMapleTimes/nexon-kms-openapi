@@ -1,9 +1,9 @@
 package com.kmstimes.nexon.api;
 
-import com.kmstimes.nexon.model.ranking.achievement.AchievementResponse;
+import com.kmstimes.nexon.model.ranking.achievement.AchievementRankingResponse;
 import com.kmstimes.nexon.model.ranking.dojang.DojangRankingResponse;
 import com.kmstimes.nexon.model.ranking.guild.GuildRankingResponse;
-import com.kmstimes.nexon.model.ranking.overall.OverallResponse;
+import com.kmstimes.nexon.model.ranking.overall.OverallRankingResponse;
 import com.kmstimes.nexon.model.ranking.theseed.TheseedRankingResponse;
 import com.kmstimes.nexon.model.ranking.union.UnionRankingResponse;
 import retrofit2.Call;
@@ -47,10 +47,10 @@ public interface RankingApi {
      *                       <strong>Available values :</strong> {@link com.kmstimes.nexon.enums.ClassName}
      * @param ocid           캐릭터 식별자
      * @param page           페이지 번호
-     * @return {@link OverallResponse} 종합 랭킹 정보 조회
+     * @return {@link OverallRankingResponse} 종합 랭킹 정보 조회
      */
     @GET("v1/ranking/overall")
-    Call<OverallResponse> getOverall(
+    Call<OverallRankingResponse> getOverall(
             @Query("date") LocalDate date,
             @Query("world_name") String worldName,
             @Query("world_type") int worldType,
@@ -175,10 +175,10 @@ public interface RankingApi {
      * @param date 조회 기준일 (KST, YYYY-MM-DD)
      * @param ocid 캐릭터 식별자
      * @param page 페이지 번호
-     * @return {@link AchievementResponse} 업적 랭킹 정보 조회
+     * @return {@link AchievementRankingResponse} 업적 랭킹 정보 조회
      */
     @GET("v1/ranking/achievement")
-    Call<AchievementResponse> getAchievement(
+    Call<AchievementRankingResponse> getAchievement(
             @Query("date") LocalDate date,
             @Query("ocid") String ocid,
             @Query("page") int page

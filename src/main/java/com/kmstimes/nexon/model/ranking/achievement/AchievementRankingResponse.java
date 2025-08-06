@@ -9,5 +9,5 @@ import java.util.List;
  *
  * @param ranking 업적 랭킹 정보
  */
-public record AchievementResponse(List<AchievementRanking> ranking) {
+public record AchievementRankingResponse(List<AchievementRanking> ranking) {
 }

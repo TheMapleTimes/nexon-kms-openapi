@@ -10,4 +10,4 @@ import java.util.List;
  *
  * @param ranking 종합 랭킹 정보
  */
-public record OverallResponse(List<OverallRanking> ranking) {}
+public record OverallRankingResponse(List<OverallRanking> ranking) {}

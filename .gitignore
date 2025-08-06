@@ -10,8 +10,6 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-TestValue.java
-ValidatorTest.java
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

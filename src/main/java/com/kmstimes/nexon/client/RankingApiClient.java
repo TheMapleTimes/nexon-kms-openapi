@@ -2,10 +2,10 @@ package com.kmstimes.nexon.client;
 
 import com.kmstimes.nexon.api.RankingApi;
 import com.kmstimes.nexon.error.handler.NexonApiExceptionHandler;
-import com.kmstimes.nexon.model.ranking.achievement.AchievementResponse;
+import com.kmstimes.nexon.model.ranking.achievement.AchievementRankingResponse;
 import com.kmstimes.nexon.model.ranking.dojang.DojangRankingResponse;
 import com.kmstimes.nexon.model.ranking.guild.GuildRankingResponse;
-import com.kmstimes.nexon.model.ranking.overall.OverallResponse;
+import com.kmstimes.nexon.model.ranking.overall.OverallRankingResponse;
 import com.kmstimes.nexon.model.ranking.theseed.TheseedRankingResponse;
 import com.kmstimes.nexon.model.ranking.union.UnionRankingResponse;
 import com.kmstimes.nexon.validator.ClassValidator;
@@ -61,9 +61,9 @@ public class RankingApiClient {
      *                       <strong>Available values :</strong> {@link com.kmstimes.nexon.enums.ClassName}
      * @param ocid           캐릭터 식별자
      * @param page           페이지 번호
-     * @return {@link OverallResponse} 종합 랭킹 정보 조회
+     * @return {@link OverallRankingResponse} 종합 랭킹 정보 조회
      */
-    public OverallResponse getOverall(LocalDate date, String worldName, int worldType, String characterClass, String ocid, int page) {
+    public OverallRankingResponse getOverall(LocalDate date, String worldName, int worldType, String characterClass, String ocid, int page) {
         WorldValidator.validate(worldName);
         ClassValidator.validate(characterClass);
 
@@ -199,9 +199,9 @@ public class RankingApiClient {
      * @param date 조회 기준일 (KST, YYYY-MM-DD)
      * @param ocid 캐릭터 식별자
      * @param page 페이지 번호
-     * @return {@link AchievementResponse} 업적 랭킹 정보 조회
+     * @return {@link AchievementRankingResponse} 업적 랭킹 정보 조회
      */
-    public AchievementResponse getAchievement(LocalDate date, String ocid, int page) {
+    public AchievementRankingResponse getAchievement(LocalDate date, String ocid, int page) {
 
         return NexonApiExceptionHandler.execute(() ->
                 rankingApi.getAchievement(dateValidator.validate(date), ocid, validatePage(page))

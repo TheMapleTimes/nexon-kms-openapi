@@ -1,10 +1,10 @@
 package com.kmstimes.nexon.api;
 
 import com.kmstimes.nexon.MapleStoryApi;
-import com.kmstimes.nexon.model.ranking.achievement.AchievementResponse;
+import com.kmstimes.nexon.model.ranking.achievement.AchievementRankingResponse;
 import com.kmstimes.nexon.model.ranking.dojang.DojangRankingResponse;
 import com.kmstimes.nexon.model.ranking.guild.GuildRankingResponse;
-import com.kmstimes.nexon.model.ranking.overall.OverallResponse;
+import com.kmstimes.nexon.model.ranking.overall.OverallRankingResponse;
 import com.kmstimes.nexon.model.ranking.theseed.TheseedRankingResponse;
 import com.kmstimes.nexon.model.ranking.union.UnionRankingResponse;
 import com.kmstimes.nexon.enums.ClassName;
@@ -30,7 +30,7 @@ public class RankingApiTest {
 
     @Test
     void getOverall() {
-        OverallResponse response = api.Ranking().getOverall(date, worldName, worldType, characterClass, ocid, page);
+        OverallRankingResponse response = api.Ranking().getOverall(date, worldName, worldType, characterClass, ocid, page);
         assertNotNull(response);
         assertNotNull(response.ranking());
         assertFalse(response.ranking().isEmpty());
@@ -85,7 +85,7 @@ public class RankingApiTest {
 
     @Test
     void getAchievement() {
-        AchievementResponse response = api.Ranking().getAchievement(date, ocid, page);
+        AchievementRankingResponse response = api.Ranking().getAchievement(date, ocid, page);
         assertNotNull(response);
         assertNotNull(response.ranking());
         assertFalse(response.ranking().isEmpty());
