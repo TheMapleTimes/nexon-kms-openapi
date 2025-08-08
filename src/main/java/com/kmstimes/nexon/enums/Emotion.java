@@ -1,6 +1,7 @@
 package com.kmstimes.nexon.enums;
 
-import com.kmstimes.nexon.model.character.basic.BasicResponse;
+import com.kmstimes.nexon.api.dto.CharacterApi;
+import com.kmstimes.nexon.dto.character.basic.BasicResponse;
 
 import java.time.LocalDate;
 
@@ -15,7 +16,7 @@ import java.time.LocalDate;
  * <li>예시: https://open.api.nexon.com/static/maplestory/character/look/ABCDEFG?action=A00.2&amp;emotion=E00&amp;width=200&amp;height=200</li>
  * </ul>
  * <p>
- * 이 열거형은 {@link com.kmstimes.nexon.api.CharacterApi#getCharacterBasic(String, LocalDate)} 에서 얻은
+ * 이 열거형은 {@link CharacterApi#getCharacterBasic(String, LocalDate)} 에서 얻은
  * {@link BasicResponse#character_image} 를 사용하여 동작을 변경합니다.
  */
 public enum Emotion {

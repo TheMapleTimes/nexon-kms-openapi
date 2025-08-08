@@ -24,7 +24,7 @@ public enum ClassName {
     /**
      * 마법사-아크메이지(썬,콜)
      */
-    ARCHMAGE_IL("마법사-아크메이지(썬,콜"),
+    ARCHMAGE_IL("마법사-아크메이지(썬,콜)"),
     /**
      * 마법사-비숍
      */
