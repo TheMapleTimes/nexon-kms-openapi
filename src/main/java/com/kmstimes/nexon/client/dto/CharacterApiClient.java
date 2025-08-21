@@ -1,9 +1,6 @@
 package com.kmstimes.nexon.client.dto;
 
 import com.kmstimes.nexon.api.dto.CharacterApi;
-import com.kmstimes.nexon.dto.character.otherstat.OtherStatResponse;
-import com.kmstimes.nexon.dto.character.ringexchange.RingExchangeResponse;
-import com.kmstimes.nexon.error.handler.NexonApiExceptionHandler;
 import com.kmstimes.nexon.dto.character.ability.AbilityResponse;
 import com.kmstimes.nexon.dto.character.achievement.AchievementResponse;
 import com.kmstimes.nexon.dto.character.basic.BasicResponse;
@@ -17,8 +14,10 @@ import com.kmstimes.nexon.dto.character.equipment.symbol.SymbolEquipmentResponse
 import com.kmstimes.nexon.dto.character.hyperstat.HyperStatResponse;
 import com.kmstimes.nexon.dto.character.list.AccountResponse;
 import com.kmstimes.nexon.dto.character.ocid.OcidResponse;
+import com.kmstimes.nexon.dto.character.otherstat.OtherStatResponse;
 import com.kmstimes.nexon.dto.character.popularity.PopularityResponse;
 import com.kmstimes.nexon.dto.character.propensity.PropensityResponse;
+import com.kmstimes.nexon.dto.character.ringexchange.RingExchangeResponse;
 import com.kmstimes.nexon.dto.character.seteffect.SetEffectResponse;
 import com.kmstimes.nexon.dto.character.skill.hexamatrix.HexaMatrixResponse;
 import com.kmstimes.nexon.dto.character.skill.hexamatrixstat.HexaMatrixStatResponse;
@@ -26,14 +25,12 @@ import com.kmstimes.nexon.dto.character.skill.link.LinkSkillResponse;
 import com.kmstimes.nexon.dto.character.skill.skill.SkillResponse;
 import com.kmstimes.nexon.dto.character.skill.vmatrix.VMatrixResponse;
 import com.kmstimes.nexon.dto.character.stat.StatResponse;
+import com.kmstimes.nexon.error.handler.NexonApiExceptionHandler;
 import com.kmstimes.nexon.validator.ApiKeyValidator;
 import com.kmstimes.nexon.validator.DateValidator;
 import com.kmstimes.nexon.validator.GradeValidator;
 import com.kmstimes.nexon.validator.OcidValidator;
-import retrofit2.Call;
 import retrofit2.Retrofit;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
 
 import java.time.LocalDate;
 
