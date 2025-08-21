@@ -14,7 +14,9 @@ import com.kmstimes.nexon.dto.character.equipment.pet.PetEquipmentResponse;
 import com.kmstimes.nexon.dto.character.equipment.symbol.SymbolEquipmentResponse;
 import com.kmstimes.nexon.dto.character.hyperstat.HyperStatResponse;
 import com.kmstimes.nexon.dto.character.list.AccountResponse;
+import com.kmstimes.nexon.dto.character.otherstat.OtherStatResponse;
 import com.kmstimes.nexon.dto.character.propensity.PropensityResponse;
+import com.kmstimes.nexon.dto.character.ringexchange.RingExchangeResponse;
 import com.kmstimes.nexon.dto.character.seteffect.SetEffectResponse;
 import com.kmstimes.nexon.dto.character.skill.hexamatrix.HexaMatrixResponse;
 import com.kmstimes.nexon.dto.character.skill.hexamatrixstat.HexaMatrixStatResponse;
@@ -182,6 +184,20 @@ public class CharacterApiTest {
     @Test
     void characterDojang() {
         DojangResponse res = api.Character().getCharacterDojang(ocid, date);
+        assertNotNull(res);
+        System.out.println(res);
+    }
+
+    @Test
+    void characterOtherStat(){
+        OtherStatResponse res = api.Character().getCharacterOtherStat(ocid, null);
+        assertNotNull(res);
+        System.out.println(res);
+    }
+
+    @Test
+    void characterRingExchange(){
+        RingExchangeResponse res = api.Character().getCharacterRingExchange(ocid, null);
         assertNotNull(res);
         System.out.println(res);
     }

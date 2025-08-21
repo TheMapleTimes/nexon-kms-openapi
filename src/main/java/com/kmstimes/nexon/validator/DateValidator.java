@@ -44,4 +44,30 @@ public class DateValidator {
 
         return date;
     }
+
+    /**
+     * API의 조회 가능 시작일을 확인합니다.(랭킹 전용)
+     *
+     * @param date 조회 기준일 (KST, YYYY-MM-DD)
+     * @throws IllegalArgumentException 형식이 잘못된 경우 예외 발생
+     * @return 조건에 부합한 경우 기존 값을, 비어 있거나 오늘 날짜와 같을 경우 null
+     */
+    public LocalDate validateOnlyRanking(LocalDate date) {
+        LocalDate today = LocalDate.now(KST);
+        LocalDate earliest = today.minusYears(2);
+
+        if (date == null || date.equals(today)) {
+            return LocalDate.now(KST);
+        }
+
+        if (date.isBefore(earliest)) {
+            throw new IllegalArgumentException("2년 이내의 날짜만 조회 가능합니다.");
+        }
+
+        if (date.isBefore(afterDate)) {
+            throw new IllegalArgumentException(afterDate + " 이후의 날짜만 조회 가능합니다.");
+        }
+
+        return date;
+    }
 }

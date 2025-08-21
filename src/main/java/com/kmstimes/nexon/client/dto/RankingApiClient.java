@@ -68,7 +68,7 @@ public class RankingApiClient {
         ClassValidator.validate(characterClass);
 
         return NexonApiExceptionHandler.execute(() ->
-                rankingApi.getOverall(dateValidator.validate(date), worldName, worldType, characterClass, ocid, validatePage(page))
+                rankingApi.getOverall(dateValidator.validateOnlyRanking(date), worldName, worldType, characterClass, ocid, validatePage(page))
         );
 
     }
@@ -94,7 +94,7 @@ public class RankingApiClient {
         WorldValidator.validate(worldName);
 
         return NexonApiExceptionHandler.execute(() ->
-                rankingApi.getUnion(dateValidator.validate(date), worldName, ocid, validatePage(page))
+                rankingApi.getUnion(dateValidator.validateOnlyRanking(date), worldName, ocid, validatePage(page))
         );
 
     }
@@ -125,7 +125,7 @@ public class RankingApiClient {
         int finalRankingType = rankingType;
 
         return NexonApiExceptionHandler.execute(() ->
-                rankingApi.getGuild(dateValidator.validate(date), worldName, finalRankingType, guildName, validatePage(page))
+                rankingApi.getGuild(dateValidator.validateOnlyRanking(date), worldName, finalRankingType, guildName, validatePage(page))
         );
 
     }
@@ -161,7 +161,7 @@ public class RankingApiClient {
 
         int finalDifficulty = difficulty;
         return NexonApiExceptionHandler.execute(() ->
-                rankingApi.getDojang(dateValidator.validate(date), worldName, finalDifficulty, characterClass, ocid, validatePage(page))
+                rankingApi.getDojang(dateValidator.validateOnlyRanking(date), worldName, finalDifficulty, characterClass, ocid, validatePage(page))
         );
     }
 
@@ -186,7 +186,7 @@ public class RankingApiClient {
         WorldValidator.validate(worldName);
 
         return NexonApiExceptionHandler.execute(() ->
-                rankingApi.getTheseed(dateValidator.validate(date), worldName, ocid, validatePage(page))
+                rankingApi.getTheseed(dateValidator.validateOnlyRanking(date), worldName, ocid, validatePage(page))
         );
 
     }
@@ -204,7 +204,7 @@ public class RankingApiClient {
     public AchievementRankingResponse getAchievement(LocalDate date, String ocid, int page) {
 
         return NexonApiExceptionHandler.execute(() ->
-                rankingApi.getAchievement(dateValidator.validate(date), ocid, validatePage(page))
+                rankingApi.getAchievement(dateValidator.validateOnlyRanking(date), ocid, validatePage(page))
         );
     }
 

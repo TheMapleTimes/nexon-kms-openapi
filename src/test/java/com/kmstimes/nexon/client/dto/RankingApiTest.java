@@ -13,6 +13,7 @@ import com.kmstimes.nexon.enums.WorldName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -31,7 +32,7 @@ public class RankingApiTest {
 
     @Test
     void getOverall() {
-        OverallRankingResponse response = api.Ranking().getOverall(date, worldName, worldType, characterClass, ocid, page);
+        OverallRankingResponse response = api.Ranking().getOverall(LocalDate.now(ZoneId.of("Asia/Seoul")), worldName, worldType, characterClass, ocid, page);
         assertNotNull(response);
         assertNotNull(response.ranking());
         assertFalse(response.ranking().isEmpty());

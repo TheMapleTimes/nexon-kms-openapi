@@ -1,6 +1,8 @@
 package com.kmstimes.nexon.client.dto;
 
 import com.kmstimes.nexon.api.dto.CharacterApi;
+import com.kmstimes.nexon.dto.character.otherstat.OtherStatResponse;
+import com.kmstimes.nexon.dto.character.ringexchange.RingExchangeResponse;
 import com.kmstimes.nexon.error.handler.NexonApiExceptionHandler;
 import com.kmstimes.nexon.dto.character.ability.AbilityResponse;
 import com.kmstimes.nexon.dto.character.achievement.AchievementResponse;
@@ -28,7 +30,10 @@ import com.kmstimes.nexon.validator.ApiKeyValidator;
 import com.kmstimes.nexon.validator.DateValidator;
 import com.kmstimes.nexon.validator.GradeValidator;
 import com.kmstimes.nexon.validator.OcidValidator;
+import retrofit2.Call;
 import retrofit2.Retrofit;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 import java.time.LocalDate;
 
@@ -113,14 +118,10 @@ public class CharacterApiClient {
      * <li>쿼리 파라미터는 API로 조회된 URL 뒤에 물음표(?)와 "Key=value" 쌍을 입력하여 조회합니다.</li>
      * <li>여러 개의 쿼리 파라미터를 전달하려면 파라미터 사이에 앰퍼샌드(&amp;)을 추가하여 하나의 문자열로 입력합니다.</li>
      * <li>액션 및 감정표현에 프레임 값("Key=value.number")을 입력하여 아바타 이미지를 프레임 별로 조회 가능합니다. (20250116 추가)</li>
-     * <li>예시: https://open.api.nexon.com/static/maplestory/character/look/ABCDEFG?action=A00.2&amp;emotion=E00&amp;width=200&amp;height=200</li>
+     * <li>예시: https://open.api.nexon.com/static/maplestory/character/look/ABCDEFG?action=A00.2&amp;emotion=E00</li>
      * <li>액션(A00~A41) 쿼리 파라미터: {@link com.kmstimes.nexon.enums.Action}</li>
      * <li>감정표현(E00~E24) 쿼리 파라미터: {@link com.kmstimes.nexon.enums.Emotion}</li>
      * <li>무기 모션(W00~W04) 쿼리 파라미터: {@link com.kmstimes.nexon.enums.WeaponMotion}</li>
-     * <li>width: 가로 길이 (배경 크기에 해당함, 96(default)~1000)</li>
-     * <li>height: 세로 길이 (배경 크기에 해당함, 96(default)~1000)</li>
-     * <li>x: 캐릭터의 가로 좌표 (좌표 범위 0 &lt; x &lt; width, 0은 왼쪽 시작점에 해당)</li>
-     * <li>y: 캐릭터의 세로 좌표 (좌표 범위 0 &lt; y &lt; height, 0은 상단 시작점에 해당)</li>
      * </ul>
      *
      * @param ocid 캐릭터 식별자
@@ -423,6 +424,36 @@ public class CharacterApiClient {
 
         return NexonApiExceptionHandler.execute(() ->
                 characterApi.getCharacterDojang(ocid, dateValidator.validate(date))
+        );
+    }
+
+    /**
+     * 능력치에 영향을 주는 요소 중 다른 조회에서 능력치 확인이 어려운 정보를 조회합니다.
+     *
+     * @param ocid 캐릭터 식별자
+     * @param date 조회 기준일 (KST, YYYY-MM-DD)
+     * @return {@link OtherStatResponse} 기타 능력치 영향 요소 정보 조회
+     */
+    public OtherStatResponse getCharacterOtherStat(String ocid, LocalDate date) {
+        OcidValidator.validate(ocid);
+
+        return NexonApiExceptionHandler.execute(() ->
+                characterApi.getCharacterOtherStat(ocid, dateValidator.validate(date))
+        );
+    }
+
+    /**
+     * 링 익스체인지 스킬 등록 장비를 조회합니다.
+     *
+     * @param ocid 캐릭터 식별자
+     * @param date 조회 기준일 (KST, YYYY-MM-DD)
+     * @return {@link RingExchangeResponse} 링 익스체인지 스킬 등록 장비 조회
+     */
+    public RingExchangeResponse getCharacterRingExchange(String ocid, LocalDate date) {
+        OcidValidator.validate(ocid);
+
+        return NexonApiExceptionHandler.execute(() ->
+                characterApi.getCharacterRingExchange(ocid, dateValidator.validate(date))
         );
     }
 

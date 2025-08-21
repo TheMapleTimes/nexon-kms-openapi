@@ -145,6 +145,20 @@ class CharacterApiJsonClientTest {
 
     @Test
     void getCharacterDojang() {
+        ResponseBody res =  api.CharacterJson().getCharacterDojang(ocid, date);
+        resPrint(res);
+    }
+
+    @Test
+    void getCharacterOtherStat(){
+        ResponseBody res =  api.CharacterJson().getCharacterOtherStat(ocid, date);
+        resPrint(res);
+    }
+
+    @Test
+    void getCharacterRingExchange(){
+        ResponseBody res =  api.CharacterJson().getCharacterRingExchange(ocid, date);
+        resPrint(res);
     }
 
     private void resPrint(ResponseBody res) {

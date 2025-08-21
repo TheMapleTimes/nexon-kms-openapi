@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.kmstimes.nexon.error.exception.NexonApiException;
 import com.kmstimes.nexon.error.factory.NexonApiExceptionFactory;
 import com.kmstimes.nexon.error.response.ErrorResponse;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -33,7 +34,9 @@ import java.util.function.Supplier;
  */
 public class NexonApiExceptionHandler {
 
-    /** JSON 직렬화/역직렬화를 위한 Gson 인스턴스 */
+    /**
+     * JSON 직렬화/역직렬화를 위한 Gson 인스턴스
+     */
     private static final Gson GSON = new Gson();
 
     /**
@@ -44,12 +47,11 @@ public class NexonApiExceptionHandler {
      *
      * <p>호출되는 API의 URL이 콘솔에 출력되어 디버깅에 도움을 줍니다.</p>
      *
-     * @param <T> 응답 타입
+     * @param <T>          응답 타입
      * @param callSupplier Retrofit2 Call 객체를 제공하는 Supplier
      * @return API 호출 성공 시 응답 본문
-     * @throws NexonApiException API 호출 실패, 네트워크 오류, 또는 파싱 오류 시
+     * @throws NexonApiException        API 호출 실패, 네트워크 오류, 또는 파싱 오류 시
      * @throws IllegalArgumentException callSupplier가 null인 경우
-     *
      * @see NexonApiExceptionFactory#createException(String, int, String)
      */
     public static <T> T execute(Supplier<Call<T>> callSupplier) throws NexonApiException {
@@ -60,9 +62,9 @@ public class NexonApiExceptionHandler {
             return handleResponse(response);
         } catch (IOException e) {
             throw new NexonApiException("NETWORK_ERROR", 0, "네트워크 오류가 발생했습니다.", e);
-        } catch (NexonApiException e)  {
+        } catch (NexonApiException e) {
             throw e;
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new NexonApiException("CALL_CREATION_ERROR", 0, "API 호출 생성 중 오류가 발생했습니다.", e);
         }
     }
@@ -73,7 +75,7 @@ public class NexonApiExceptionHandler {
      * <p>성공 응답의 경우 응답 본문을 반환하고, 실패 응답의 경우
      * 오류 응답을 파싱하여 적절한 NexonApiException을 던집니다.</p>
      *
-     * @param <T> 응답 타입
+     * @param <T>      응답 타입
      * @param response Retrofit2 Response 객체
      * @return 성공 시 응답 본문
      * @throws NexonApiException HTTP 오류 응답 또는 파싱 오류 시
@@ -83,8 +85,16 @@ public class NexonApiExceptionHandler {
             return response.body();
         }
 
-        try {
-            String errorBodyString = response.errorBody().string();
+        try (ResponseBody errorBody = response.errorBody()) {
+            String errorBodyString = errorBody != null ? errorBody.string() : null;
+            if (errorBodyString == null || errorBodyString.isBlank()) {
+                throw new NexonApiException(
+                        "EMPTY_ERROR_BODY",
+                        response.code(),
+                        "에러 응답 본문이 비어있습니다."
+                );
+            }
+
             ErrorResponse errorResponse = GSON.fromJson(errorBodyString, ErrorResponse.class);
 
             String errorCode = errorResponse.error().name();
@@ -95,9 +105,9 @@ public class NexonApiExceptionHandler {
 
         } catch (IOException e) {
             throw new NexonApiException("PARSE_ERROR", response.code(), "에러 응답을 파싱할 수 없습니다.", e);
-        } catch (NexonApiException e){
+        } catch (NexonApiException e) {
             throw e;
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new NexonApiException("UNKNOWN_ERROR", response.code(),
                     "알 수 없는 에러가 발생했습니다: HTTP " + response.code(), e);
         }
