@@ -24,14 +24,14 @@
 <dependency>
     <groupId>com.kmstimes</groupId>
     <artifactId>nexon-kms-openapi</artifactId>
-    <version>1.1.2</version>
+    <version>${project.version}</version>
 </dependency>
 ```
 
 #### Gradle
 
 ```groovy
-implementation 'com.kmstimes:nexon-kms-openapi:1.1.2'
+implementation 'com.kmstimes:nexon-kms-openapi:${project.version}'
 ```
 
 ### API 키 발급받기
