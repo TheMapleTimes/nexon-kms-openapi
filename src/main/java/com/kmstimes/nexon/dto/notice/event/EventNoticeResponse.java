@@ -1,5 +1,7 @@
 package com.kmstimes.nexon.dto.notice.event;
 
+import com.kmstimes.nexon.dto.notice.common.NoticeData;
+
 import java.util.List;
 
 /**
@@ -8,5 +10,5 @@ import java.util.List;
  *
  * @param event_notice 이벤트 공지사항 목록
  */
-public record EventNoticeResponse(List<EventNotice> event_notice) {
+public record EventNoticeResponse(List<EventNotice> event_notice) implements NoticeData {
 }

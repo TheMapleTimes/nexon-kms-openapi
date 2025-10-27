@@ -1,6 +1,7 @@
 package com.kmstimes.nexon.dto.notice.update;
 
 import com.kmstimes.nexon.dto.notice.common.Notice;
+import com.kmstimes.nexon.dto.notice.common.NoticeData;
 
 import java.util.List;
 
@@ -10,5 +11,5 @@ import java.util.List;
  *
  * @param update_notice 업데이트 공지사항 목록
  */
-public record UpdateNoticeResponse(List<Notice> update_notice) {
+public record UpdateNoticeResponse(List<Notice> update_notice) implements NoticeData {
 }

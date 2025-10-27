@@ -2,6 +2,7 @@ package com.kmstimes.nexon.dto.notice.notice;
 
 
 import com.kmstimes.nexon.dto.notice.common.Notice;
+import com.kmstimes.nexon.dto.notice.common.NoticeData;
 
 import java.util.List;
 
@@ -11,5 +12,5 @@ import java.util.List;
  *
  * @param notice 공지사항 목록
  */
-public record NoticeResponse(List<Notice> notice) {
+public record NoticeResponse(List<Notice> notice) implements NoticeData {
 }

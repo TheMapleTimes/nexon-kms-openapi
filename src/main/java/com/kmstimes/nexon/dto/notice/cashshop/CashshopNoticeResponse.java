@@ -1,5 +1,7 @@
 package com.kmstimes.nexon.dto.notice.cashshop;
 
+import com.kmstimes.nexon.dto.notice.common.NoticeData;
+
 import java.util.List;
 
 /**
@@ -8,5 +10,6 @@ import java.util.List;
  *
  * @param cashshop_notice 캐시샵 공지사항 목록
  */
-public record CashshopNoticeResponse(List<CashshopNotice> cashshop_notice) {
+public record CashshopNoticeResponse(List<CashshopNotice> cashshop_notice) implements
+                                                                           NoticeData {
 }
