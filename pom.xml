@@ -181,14 +181,18 @@
                             <goal>replace</goal>
                         </goals>
                         <configuration>
-                            <file>README.md</file>
-                            <outputFile>README.md</outputFile>
+                            <file>${project.basedir}/README.md</file>
                             <replacements>
                                 <replacement>
-                                    <token>${project.version}</token>
-                                    <value>${project.version}</value>
+                                    <token>&lt;version&gt;[0-9]+\.[0-9]+\.[0-9]+&lt;/version&gt;</token>
+                                    <value>&lt;version&gt;${project.version}&lt;/version&gt;</value>
+                                </replacement>
+                                <replacement>
+                                    <token>nexon-kms-openapi:[0-9]+\.[0-9]+\.[0-9]+</token>
+                                    <value>nexon-kms-openapi:${project.version}</value>
                                 </replacement>
                             </replacements>
+                            <regex>true</regex>
                         </configuration>
                     </execution>
                 </executions>
