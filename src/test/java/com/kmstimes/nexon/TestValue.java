@@ -13,8 +13,7 @@ public class TestValue {
     public static String legacyApiKey = System.getProperty("nexon.legacy.api.key",
             System.getenv("NEXON_LEGACY_API_KEY"));
     public static MapleStoryApi api = new MapleStoryApi(apiKey);
-    public static String ocid = "384a48e20cfd97dad5273c2eb380caa8";
-    public static String ocid2 = "4b5556ad92b3bb4080c1c43d06d6c2d7";
+    public static String ocid = "e0a4f439e53c369866b55297d2f5f4eb";
 
     public static int count = 10;
 

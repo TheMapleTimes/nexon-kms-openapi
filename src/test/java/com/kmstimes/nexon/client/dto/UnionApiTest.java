@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class UnionApiTest {
     static MapleStoryApi api = TestValue.api;
-    static String ocid = TestValue.ocid2;
+    static String ocid = TestValue.ocid;
     static LocalDate date = TestValue.date;
 
     @Test

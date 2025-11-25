@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UnionApiJsonClientTest {
     static MapleStoryApi api = TestValue.api;
-    static String ocid = TestValue.ocid2;
+    static String ocid = TestValue.ocid;
     static LocalDate date = TestValue.date;
 
     @Test

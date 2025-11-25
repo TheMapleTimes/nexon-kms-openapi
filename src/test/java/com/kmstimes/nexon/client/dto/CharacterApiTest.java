@@ -45,7 +45,7 @@ public class CharacterApiTest {
 
     @Test
     void getId() {
-        ocid = api.Character().getId("닉네임").ocid();
+        ocid = api.Character().getId("아델").ocid();
         System.out.println(ocid);
     }
 
