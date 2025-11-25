@@ -37,7 +37,7 @@ public interface UnionApiJson {
      * @param date 조회 기준일 (KST, YYYY-MM-DD)
      * @return {@link UnionResponse} 유니온 정보 조회
      */
-    @GET("v1/user/union")
+    @GET("maplestory/v1/user/union")
     Call<ResponseBody> getUnion(@Query("ocid") String ocid, @Query("date") LocalDate date);
 
     /**
@@ -47,7 +47,7 @@ public interface UnionApiJson {
      * @param date 조회 기준일 (KST, YYYY-MM-DD)
      * @return {@link UnionRaiderResponse} 유니온 공격대 정보 조회
      */
-    @GET("v1/user/union-raider")
+    @GET("maplestory/v1/user/union-raider")
     Call<ResponseBody> getUnionRaider(@Query("ocid") String ocid, @Query("date") LocalDate date);
 
     /**
@@ -57,7 +57,7 @@ public interface UnionApiJson {
      * @param date 조회 기준일 (KST, YYYY-MM-DD)
      * @return {@link UnionArtifactResponse} 유니온 아티팩트 정보 조회
      */
-    @GET("v1/user/union-artifact")
+    @GET("maplestory/v1/user/union-artifact")
     Call<ResponseBody> getUnionArtifact(@Query("ocid") String ocid, @Query("date") LocalDate date);
 
     /**
@@ -69,6 +69,6 @@ public interface UnionApiJson {
      * @param date 조회 기준일 (KST, YYYY-MM-DD)
      * @return {@link UnionChampionResponse} 유니온 챔피언 정보 조회
      */
-    @GET("v1/user/union-champion")
+    @GET("maplestory/v1/user/union-champion")
     Call<ResponseBody> getUnionChampion(@Query("ocid") String ocid, @Query("date") LocalDate date);
 }

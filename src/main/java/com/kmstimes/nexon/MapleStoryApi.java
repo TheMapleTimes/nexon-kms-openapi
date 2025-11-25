@@ -36,7 +36,7 @@ import java.util.concurrent.TimeUnit;
  * </pre>
  */
 public class MapleStoryApi {
-    private static final String BASE_URL = "https://open.api.nexon.com/maplestory/";
+    private static final String BASE_URL = "https://open.api.nexon.com/";
     private static final String API_KEY_HEADER = "x-nxopen-api-key";
     private static final int DEFAULT_CONNECT_TIMEOUT = 10;
     private static final int DEFAULT_READ_TIMEOUT = 30;

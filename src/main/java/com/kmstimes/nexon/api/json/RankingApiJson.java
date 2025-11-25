@@ -51,7 +51,7 @@ public interface RankingApiJson {
      * @param page           페이지 번호
      * @return {@link OverallRankingResponse} 종합 랭킹 정보 조회
      */
-    @GET("v1/ranking/overall")
+    @GET("maplestory/v1/ranking/overall")
     Call<ResponseBody> getOverall(
             @Query("date") LocalDate date,
             @Query("world_name") String worldName,
@@ -78,7 +78,7 @@ public interface RankingApiJson {
      * @param page      페이지 번호
      * @return {@link UnionRankingResponse} 유니온 랭킹 정보 조회
      */
-    @GET("v1/ranking/union")
+    @GET("maplestory/v1/ranking/union")
     Call<ResponseBody> getUnion(
             @Query("date") LocalDate date,
             @Query("world_name") String worldName,
@@ -104,7 +104,7 @@ public interface RankingApiJson {
      * @param page        페이지 번호
      * @return {@link GuildRankingResponse} 길드 랭킹 정보 조회
      */
-    @GET("v1/ranking/guild")
+    @GET("maplestory/v1/ranking/guild")
     Call<ResponseBody> getGuild(
             @Query("date") LocalDate date,
             @Query("world_name") String worldName,
@@ -134,7 +134,7 @@ public interface RankingApiJson {
      * @param page           페이지 번호
      * @return {@link DojangRankingResponse} 무릉도장 랭킹 정보 조회
      */
-    @GET("v1/ranking/dojang")
+    @GET("maplestory/v1/ranking/dojang")
     Call<ResponseBody> getDojang(
             @Query("date") LocalDate date,
             @Query("world_name") String worldName,
@@ -161,7 +161,7 @@ public interface RankingApiJson {
      * @param page      페이지 번호
      * @return {@link TheseedRankingResponse} 더 시드 랭킹 정보 조회
      */
-    @GET("v1/ranking/theseed")
+    @GET("maplestory/v1/ranking/theseed")
     Call<ResponseBody> getTheseed(
             @Query("date") LocalDate date,
             @Query("world_name") String worldName,
@@ -179,7 +179,7 @@ public interface RankingApiJson {
      * @param page 페이지 번호
      * @return {@link AchievementRankingResponse} 업적 랭킹 정보 조회
      */
-    @GET("v1/ranking/achievement")
+    @GET("maplestory/v1/ranking/achievement")
     Call<ResponseBody> getAchievement(
             @Query("date") LocalDate date,
             @Query("ocid") String ocid,

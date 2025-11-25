@@ -40,7 +40,7 @@ public interface GuildApiJson {
      *                  <strong>Available values :</strong> {@link com.kmstimes.nexon.enums.WorldName}
      * @return {@link GuildIdResponse} 길드 식별자(oguild_id) 정보 조회
      */
-    @GET("v1/guild/id")
+    @GET("maplestory/v1/guild/id")
     Call<ResponseBody> getGuildId(
             @Query("guild_name") String guildName,
             @Query("world_name") String worldName
@@ -53,7 +53,7 @@ public interface GuildApiJson {
      * @param date    조회 기준일 (KST, YYYY-MM-DD)
      * @return {@link GuildBasicResponse} 길드 기본 정보 조회
      */
-    @GET("v1/guild/basic")
+    @GET("maplestory/v1/guild/basic")
     Call<ResponseBody> getGuildBasic(
             @Query("oguild_id") String guildId,
             @Query("date") LocalDate date

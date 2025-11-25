@@ -35,7 +35,7 @@ public interface ProbabilityApi {
      * @param userApiKey API KEY
      * @return {@link OuidResponse} 계정 식별자(ouid) 조회
      */
-    @GET("v1/ouid")
+    @GET("maplestory/v1/ouid")
     Call<OuidResponse> getOuid(@Header("x-nxopen-api-key") String userApiKey);
 
     /**
@@ -57,7 +57,7 @@ public interface ProbabilityApi {
      *                   (date와 cursor 파라미터 중 1개 이상은 필수 입력)
      * @return {@link StarforceResponse} 스타포스 강화 결과 조회
      */
-    @GET("v1/history/starforce")
+    @GET("maplestory/v1/history/starforce")
     Call<StarforceResponse> getStarforce(@Header("x-nxopen-api-key") String userApiKey,
                                          @Query("count") int count,
                                          @Query("date") LocalDate date,
@@ -85,7 +85,7 @@ public interface ProbabilityApi {
      *                   (date와 cursor 파라미터 중 1개 이상은 필수 입력)
      * @return {@link PotentialResponse} 잠재능력 재설정 이용 결과 조회
      */
-    @GET("v1/history/potential")
+    @GET("maplestory/v1/history/potential")
     Call<PotentialResponse> getPotential(@Header("x-nxopen-api-key") String userApiKey,
                                          @Query("count") int count,
                                          @Query("date") LocalDate date,
@@ -113,7 +113,7 @@ public interface ProbabilityApi {
      *                   (date와 cursor 파라미터 중 1개 이상은 필수 입력)
      * @return {@link CubeResponse} 큐브 사용 결과 조회
      */
-    @GET("v1/history/cube")
+    @GET("maplestory/v1/history/cube")
     Call<CubeResponse> getCube(@Header("x-nxopen-api-key") String userApiKey,
                                @Query("count") int count,
                                @Query("date") LocalDate date,

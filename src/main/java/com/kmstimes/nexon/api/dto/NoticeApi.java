@@ -32,7 +32,7 @@ public interface NoticeApi {
      *
      * @return {@link NoticeResponse} 공지사항 목록 조회
      */
-    @GET("v1/notice")
+    @GET("maplestory/v1/notice")
     Call<NoticeResponse> getNotices();
 
     /**
@@ -41,7 +41,7 @@ public interface NoticeApi {
      * @param noticeId 공지 식별자
      * @return {@link NoticeDetail} 공지사항 상세 조회
      */
-    @GET("v1/notice/detail")
+    @GET("maplestory/v1/notice/detail")
     Call<NoticeDetail> getNoticeDetail(@Query("notice_id") Long noticeId);
 
     /**
@@ -49,7 +49,7 @@ public interface NoticeApi {
      *
      * @return {@link UpdateNoticeResponse} 업데이트 목록 조회
      */
-    @GET("v1/notice-update")
+    @GET("maplestory/v1/notice-update")
     Call<UpdateNoticeResponse> getUpdateNotices();
 
     /**
@@ -58,7 +58,7 @@ public interface NoticeApi {
      * @param noticeId 공지 식별자
      * @return {@link NoticeDetail} 업데이트 상세 조회
      */
-    @GET("v1/notice-update/detail")
+    @GET("maplestory/v1/notice-update/detail")
     Call<NoticeDetail> getUpdateNoticeDetail(@Query("notice_id") Long noticeId);
 
     /**
@@ -66,7 +66,7 @@ public interface NoticeApi {
      *
      * @return {@link EventNoticeResponse} 진행 중 이벤트 목록 조회
      */
-    @GET("v1/notice-event")
+    @GET("maplestory/v1/notice-event")
     Call<EventNoticeResponse> getEventNotices();
 
     /**
@@ -75,7 +75,7 @@ public interface NoticeApi {
      * @param noticeId 공지 식별자
      * @return {@link EventNoticeDetailResponse} 진행 중 이벤트 상세 조회
      */
-    @GET("v1/notice-event/detail")
+    @GET("maplestory/v1/notice-event/detail")
     Call<EventNoticeDetailResponse> getEventNoticeDetail(@Query("notice_id") Long noticeId);
 
     /**
@@ -83,7 +83,7 @@ public interface NoticeApi {
      *
      * @return {@link CashshopNoticeResponse} 캐시샵 공지 목록 조회
      */
-    @GET("v1/notice-cashshop")
+    @GET("maplestory/v1/notice-cashshop")
     Call<CashshopNoticeResponse> getCashshopNotices();
 
     /**
@@ -92,6 +92,6 @@ public interface NoticeApi {
      * @param noticeId 공지 식별자
      * @return {@link CashshopNoticeDetailResponse} 캐시샵 공지 상세 조회
      */
-    @GET("v1/notice-cashshop/detail")
+    @GET("maplestory/v1/notice-cashshop/detail")
     Call<CashshopNoticeDetailResponse> getCashshopNoticeDetail(@Query("notice_id") Long noticeId);
 }
