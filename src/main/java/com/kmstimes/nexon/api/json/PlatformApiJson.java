@@ -1,6 +1,6 @@
 package com.kmstimes.nexon.api.json;
 
-import com.kmstimes.nexon.client.json.PlatformApiClient;
+import com.kmstimes.nexon.client.json.PlatformApiJsonClient;
 import com.kmstimes.nexon.dto.platform.PlatformNoticeResponse;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -11,9 +11,9 @@ import retrofit2.http.Query;
  * NEXON Open API의 공지 사항을 조회할 수 있는 API입니다.
  * <p>
  * Retrofit을 기반으로 NEXON Open API 엔드포인트를 선언하며,
- * {@link PlatformApiClient} 에서 사용됩니다.
+ * {@link PlatformApiJsonClient} 에서 사용됩니다.
  */
-public interface PlatformApi {
+public interface PlatformApiJson {
     
     /**
      * NEXON Open API에 최근 등록된 공지 사항 10개를 가져옵니다.

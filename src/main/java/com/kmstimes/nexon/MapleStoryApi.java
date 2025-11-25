@@ -1,17 +1,7 @@
 package com.kmstimes.nexon;
 
-import com.kmstimes.nexon.client.dto.CharacterApiClient;
-import com.kmstimes.nexon.client.dto.GuildApiClient;
-import com.kmstimes.nexon.client.dto.NoticeApiClient;
-import com.kmstimes.nexon.client.dto.ProbabilityApiClient;
-import com.kmstimes.nexon.client.dto.RankingApiClient;
-import com.kmstimes.nexon.client.dto.UnionApiClient;
-import com.kmstimes.nexon.client.json.CharacterApiJsonClient;
-import com.kmstimes.nexon.client.json.GuildApiJsonClient;
-import com.kmstimes.nexon.client.json.NoticeApiJsonClient;
-import com.kmstimes.nexon.client.json.ProbabilityApiJsonClient;
-import com.kmstimes.nexon.client.json.RankingApiJsonClient;
-import com.kmstimes.nexon.client.json.UnionApiJsonClient;
+import com.kmstimes.nexon.client.dto.*;
+import com.kmstimes.nexon.client.json.*;
 import com.kmstimes.nexon.validator.ApiKeyValidator;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -53,6 +43,8 @@ public class MapleStoryApi {
     private final ProbabilityApiJsonClient probabilityApiJsonClient;
     private final RankingApiJsonClient rankingApiJsonClient;
     private final UnionApiJsonClient unionApiJsonClient;
+    private final PlatformApiClient platformApiClient;
+    private final PlatformApiJsonClient platformApiJsonClient;
 
     /**
      * 기본 생성자입니다. 기본 타임아웃 설정을 사용하여 클라이언트를 초기화합니다.
@@ -92,6 +84,8 @@ public class MapleStoryApi {
         this.probabilityApiJsonClient = new ProbabilityApiJsonClient(retrofit);
         this.rankingApiJsonClient = new RankingApiJsonClient(retrofit);
         this.unionApiJsonClient = new UnionApiJsonClient(retrofit);
+        this.platformApiClient = new PlatformApiClient(retrofit);
+        this.platformApiJsonClient = new PlatformApiJsonClient(retrofit);
     }
 
     /**
@@ -123,7 +117,7 @@ public class MapleStoryApi {
     public GuildApiClient Guild() {
         return guildApiClient;
     }
-
+    
     /**
      * 캐릭터 정보 조회 API에 접근할 수 있는 클라이언트를 반환합니다.
      * <p>
@@ -134,7 +128,7 @@ public class MapleStoryApi {
     public CharacterApiClient Character() {
         return characterApiClient;
     }
-
+    
     /**
      * 공지 정보 조회 API에 접근할 수 있는 클라이언트를 반환합니다.
      * <p>
@@ -145,7 +139,7 @@ public class MapleStoryApi {
     public NoticeApiClient Notice() {
         return noticeApiClient;
     }
-
+    
     /**
      * 확률 정보 조회 API에 접근할 수 있는 클라이언트를 반환합니다.
      * <p>
@@ -156,7 +150,7 @@ public class MapleStoryApi {
     public ProbabilityApiClient Probability() {
         return probabilityApiClient;
     }
-
+    
     /**
      * 랭킹 정보 조회 API에 접근할 수 있는 클라이언트를 반환합니다.
      * <p>
@@ -167,7 +161,7 @@ public class MapleStoryApi {
     public RankingApiClient Ranking() {
         return rankingApiClient;
     }
-
+    
     /**
      * 유니온 정보 조회 API에 접근할 수 있는 클라이언트를 반환합니다.
      * <p>
@@ -178,7 +172,18 @@ public class MapleStoryApi {
     public UnionApiClient Union() {
         return unionApiClient;
     }
-
+    
+    /**
+     * NEXON Open API의 공지 사항을 조회 API에 접근할 수 있는 클라이언트를 반환합니다.
+     * <p>
+     * api에 대응하는 DTO 객체로 반환합니다.
+     *
+     * @return {@link PlatformApiClient} 인스턴스
+     */
+    public PlatformApiClient platform() {
+        return platformApiClient;
+    }
+    
     /**
      * 길드 정보 조회 API에 접근할 수 있는 클라이언트를 반환합니다.
      * <p>
@@ -189,7 +194,7 @@ public class MapleStoryApi {
     public GuildApiJsonClient GuildJson() {
         return guildApiJsonClient;
     }
-
+    
     /**
      * 캐릭터 정보 조회 API에 접근할 수 있는 클라이언트를 반환합니다.
      * <p>
@@ -200,49 +205,60 @@ public class MapleStoryApi {
     public CharacterApiJsonClient CharacterJson() {
         return characterApiJsonClient;
     }
-
+    
     /**
      * 공지 정보 조회 API에 접근할 수 있는 클라이언트를 반환합니다.
      * <p>
      * ResponseBody 객체(json)로 반환합니다.
      *
-     * @return {@link NoticeApiClient} 인스턴스
+     * @return {@link NoticeApiJsonClient} 인스턴스
      */
     public NoticeApiJsonClient NoticeJson() {
         return noticeApiJsonClient;
     }
-
+    
     /**
      * 확률 정보 조회 API에 접근할 수 있는 클라이언트를 반환합니다.
      * <p>
      * ResponseBody 객체(json)로 반환합니다.
      *
-     * @return {@link ProbabilityApiClient} 인스턴스
+     * @return {@link ProbabilityApiJsonClient} 인스턴스
      */
     public ProbabilityApiJsonClient ProbabilityJson() {
         return probabilityApiJsonClient;
     }
-
+    
     /**
      * 랭킹 정보 조회 API에 접근할 수 있는 클라이언트를 반환합니다.
      * <p>
      * ResponseBody 객체(json)로 반환합니다.
      *
-     * @return {@link RankingApiClient} 인스턴스
+     * @return {@link RankingApiJsonClient} 인스턴스
      */
     public RankingApiJsonClient RankingJson() {
         return rankingApiJsonClient;
     }
-
+    
     /**
      * 유니온 정보 조회 API에 접근할 수 있는 클라이언트를 반환합니다.
      * <p>
      * ResponseBody 객체(json)로 반환합니다.
      *
-     * @return {@link UnionApiClient} 인스턴스
+     * @return {@link UnionApiJsonClient} 인스턴스
      */
     public UnionApiJsonClient UnionJson() {
         return unionApiJsonClient;
+    }
+    
+    /**
+     * NEXON Open API의 공지 사항을 조회 API에 접근할 수 있는 클라이언트를 반환합니다.
+     * <p>
+     * ResponseBody 객체(json)로 반환합니다.
+     *
+     * @return {@link PlatformApiJsonClient} 인스턴스
+     */
+    public PlatformApiJsonClient platformJson() {
+        return platformApiJsonClient;
     }
 
     private Retrofit buildRetrofit(int connectTimeoutSeconds, int readTimeoutSeconds) {
