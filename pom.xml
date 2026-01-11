@@ -7,7 +7,7 @@
 
     <groupId>com.kmstimes</groupId>
     <artifactId>nexon-kms-openapi</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
     <packaging>jar</packaging>
 
     <name>nexon-kms-openapi</name>

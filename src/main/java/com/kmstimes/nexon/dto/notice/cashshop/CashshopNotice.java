@@ -5,6 +5,7 @@ package com.kmstimes.nexon.dto.notice.cashshop;
  *
  * @param title           공지사항 제목
  * @param url             공지사항 URL
+ * @param thumbnail_url   썸네일 이미지 URL
  * @param notice_id       공지사항 식별자
  * @param date            공지사항 등록 날짜 (KST) (example: 2023-12-21T00:00+09:00)
  * @param date_sale_start 판매 시작 날짜 (KST) (example: 2023-12-21T00:00+09:00)
@@ -14,10 +15,12 @@ package com.kmstimes.nexon.dto.notice.cashshop;
 public record CashshopNotice(
         String title,
         String url,
+        String thumbnail_url,
         Long notice_id,
         String date,
         String date_sale_start,
         String date_sale_end,
         String ongoing_flag
 ) {
+
 }

@@ -24,9 +24,11 @@ import java.util.List;
  *                                 example: 2023-12-21T00:00+09:00
  * @param cash_item_label          캐시 장비 라벨 정보
  * @param cash_item_coloring_prism 캐시 장비 컬러링 프리즘 정보
+ * @param cash_item_effect_prism   캐시 장비(무기) 이펙트 프리즘 정보
  * @param item_gender              아이템 장착 가능 성별
  * @param skill                    스킬명
  * @param freestyle_flag           프리스타일 쿠폰 적용 여부 (0:미적용, 1:적용)
+ * @param emotion_name             표정 합성 정보
  */
 public record CashItemEquipmentBase(
         String cash_item_equipment_part,
@@ -39,8 +41,11 @@ public record CashItemEquipmentBase(
         String date_option_expire,
         String cash_item_label,
         CashItemColoringPrism cash_item_coloring_prism,
+        CashItemColoringPrism cash_item_effect_prism,
         String item_gender,
         List<String> skill,
-        String freestyle_flag
+        String freestyle_flag,
+        String emotion_name
 ) {
+
 }
