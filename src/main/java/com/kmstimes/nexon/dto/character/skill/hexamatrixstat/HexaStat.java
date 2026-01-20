@@ -8,8 +8,8 @@ package com.kmstimes.nexon.dto.character.skill.hexamatrixstat;
  * @param sub_stat_name_1   첫 번째 서브 명
  * @param sub_stat_name_2   두 번째 서브 명
  * @param main_stat_level   메인 스탯 레벨
- * @param main_stat_level_1 첫 번째 서브 레벨
- * @param main_stat_level_2 두 번째 서브 레벨
+ * @param sub_stat_level_1 첫 번째 서브 레벨
+ * @param sub_stat_level_2 두 번째 서브 레벨
  * @param stat_grade        스탯 코어 등급
  */
 public record HexaStat(
@@ -18,8 +18,8 @@ public record HexaStat(
         String sub_stat_name_1,
         String sub_stat_name_2,
         Long main_stat_level,
-        Long main_stat_level_1,
-        Long main_stat_level_2,
+        Long sub_stat_level_1,
+        Long sub_stat_level_2,
         Long stat_grade
 ) {
 }
