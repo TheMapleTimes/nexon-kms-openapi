@@ -53,7 +53,7 @@ public class MapleStoryApi {
      * @throws IllegalArgumentException API 키가 null 이거나 비어 있을 경우
      */
     public MapleStoryApi(final String apiKey) {
-        this(apiKey, DEFAULT_CONNECT_TIMEOUT, DEFAULT_READ_TIMEOUT);
+        this(apiKey, null, DEFAULT_CONNECT_TIMEOUT, DEFAULT_READ_TIMEOUT);
     }
 
     /**
@@ -64,14 +64,14 @@ public class MapleStoryApi {
      * @param readTimeoutSeconds    읽기 타임아웃 (초)
      * @throws IllegalArgumentException 유효하지 않은 파라미터 입력 시
      */
-    public MapleStoryApi(String apiKey, int connectTimeoutSeconds, int readTimeoutSeconds) {
+    public MapleStoryApi(String apiKey, OkHttpClient customClient, int connectTimeoutSeconds, int readTimeoutSeconds) {
         ApiKeyValidator.validate(apiKey);
         if (connectTimeoutSeconds <= 0 || readTimeoutSeconds <= 0) {
             throw new IllegalArgumentException("시간 초과 값은 양수여야 합니다.");
         }
 
         this.apiKey = apiKey;
-        Retrofit retrofit = buildRetrofit(connectTimeoutSeconds, readTimeoutSeconds);
+        Retrofit retrofit = buildRetrofit(customClient, connectTimeoutSeconds, readTimeoutSeconds);
         this.guildApiClient = new GuildApiClient(retrofit);
         this.characterApiClient = new CharacterApiClient(retrofit);
         this.noticeApiClient = new NoticeApiClient(retrofit);
@@ -261,22 +261,28 @@ public class MapleStoryApi {
         return platformApiJsonClient;
     }
 
-    private Retrofit buildRetrofit(int connectTimeoutSeconds, int readTimeoutSeconds) {
-        OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(connectTimeoutSeconds, TimeUnit.SECONDS)
-                .readTimeout(readTimeoutSeconds, TimeUnit.SECONDS)
-                .addInterceptor(chain -> {
-                    Request request = chain.request().newBuilder()
-                            .header(API_KEY_HEADER, apiKey)
-                            .header("Accept", "application/json")
-                            .build();
-                    return chain.proceed(request);
-                })
-                .build();
+    private Retrofit buildRetrofit(OkHttpClient customClient, int connectTimeoutSeconds, int readTimeoutSeconds) {
+        OkHttpClient.Builder clientBuilder;
+        
+        if (customClient != null) {
+            clientBuilder = customClient.newBuilder();
+        } else {
+            clientBuilder = new OkHttpClient.Builder();
+            clientBuilder.connectTimeout(connectTimeoutSeconds, TimeUnit.SECONDS);
+            clientBuilder.readTimeout(readTimeoutSeconds, TimeUnit.SECONDS);
+        }
+        
+        clientBuilder.addInterceptor(chain -> {
+            Request request = chain.request().newBuilder()
+                                   .header(API_KEY_HEADER, apiKey)
+                                   .header("Accept", "application/json")
+                                   .build();
+            return chain.proceed(request);
+        });
 
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(client)
+                .client(clientBuilder.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -289,6 +295,7 @@ public class MapleStoryApi {
      */
     public static class Builder {
         private String apiKey;
+        private OkHttpClient customClient;
         private int connectTimeoutSeconds = DEFAULT_CONNECT_TIMEOUT;
         private int readTimeoutSeconds = DEFAULT_READ_TIMEOUT;
 
@@ -300,6 +307,15 @@ public class MapleStoryApi {
          */
         public Builder apiKey(String apiKey) {
             this.apiKey = apiKey;
+            return this;
+        }
+        
+        /**
+         *
+         * 외부에서 설정한 OkHttpClient(Dispatcher, ConnectionPool 포함)를 주입합니다.
+         */
+        public Builder client(OkHttpClient client) {
+            this.customClient = client;
             return this;
         }
 
@@ -331,7 +347,7 @@ public class MapleStoryApi {
          * @return MapleStoryApi 인스턴스
          */
         public MapleStoryApi build() {
-            return new MapleStoryApi(apiKey, connectTimeoutSeconds, readTimeoutSeconds);
+            return new MapleStoryApi(apiKey, customClient, connectTimeoutSeconds, readTimeoutSeconds);
         }
     }
 }
