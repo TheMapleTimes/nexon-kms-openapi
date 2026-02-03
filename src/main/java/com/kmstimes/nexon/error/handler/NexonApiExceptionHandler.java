@@ -57,7 +57,6 @@ public class NexonApiExceptionHandler {
     public static <T> T execute(Supplier<Call<T>> callSupplier) throws NexonApiException {
         try {
             Call<T> call = callSupplier.get();
-            System.out.println(call.request().url());
             Response<T> response = call.execute();
             return handleResponse(response);
         } catch (IOException e) {
