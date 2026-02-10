@@ -86,7 +86,7 @@ public class ProbabilityApiClient {
         ApiKeyValidator.validate(userApiKey);
 
         return NexonApiExceptionHandler.execute(() ->
-                probabilityApi.getStarforce(userApiKey, validateCount(count), starforceValidator.validate(validateDate(date, cursor)), cursor)
+                probabilityApi.getStarforce(userApiKey, validateCount(count), starforceValidator.validateOnlyProbability(validateDate(date, cursor)), cursor)
         );
 
     }
@@ -117,7 +117,7 @@ public class ProbabilityApiClient {
         ApiKeyValidator.validate(userApiKey);
 
         return NexonApiExceptionHandler.execute(() ->
-                probabilityApi.getPotential(userApiKey, validateCount(count), potentialValidator.validate(validateDate(date, cursor)), cursor)
+                probabilityApi.getPotential(userApiKey, validateCount(count), potentialValidator.validateOnlyProbability(validateDate(date, cursor)), cursor)
         );
 
     }
@@ -148,7 +148,7 @@ public class ProbabilityApiClient {
         ApiKeyValidator.validate(userApiKey);
 
         return NexonApiExceptionHandler.execute(() ->
-                probabilityApi.getCube(userApiKey, validateCount(count), cubeValidator.validate(validateDate(date, cursor)), cursor)
+                probabilityApi.getCube(userApiKey, validateCount(count), cubeValidator.validateOnlyProbability(validateDate(date, cursor)), cursor)
         );
 
     }
