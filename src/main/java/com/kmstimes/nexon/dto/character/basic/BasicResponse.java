@@ -32,11 +32,6 @@ package com.kmstimes.nexon.dto.character.basic;
  *                                    <p>
  *                                    example: 2023-12-21T00:00+09:00
  * @param access_flag                 최근 7일간 접속 여부 (true 접속, false 미접속)
- * @param liberation_quest_clear_flag 해방 퀘스트 완료 여부 (true 완료, false 미완료)
- *                                    <ul>
- *                                    <li>해당 파라미터는 2025년 9월 메이플스토리 OpenAPI 업데이트 이후에 제거될 예정입니다.</li>
- *                                    <li>새로 추가된 {@link #liberation_quest_clear} 파라미터를 사용해주세요.</li>
- *                                    </ul>
  * @param liberation_quest_clear      해방 퀘스트 완료 여부 (0:미완료, 1:제네시스 무기 해방, 2:데스티니 무기 1차 해방)
  */
 public record BasicResponse(
@@ -53,7 +48,6 @@ public record BasicResponse(
         String character_image,
         String character_date_create,
         String access_flag,
-        String liberation_quest_clear_flag,
         String liberation_quest_clear
 ) {
 }

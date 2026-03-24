@@ -24,14 +24,14 @@
 <dependency>
     <groupId>com.kmstimes</groupId>
     <artifactId>nexon-kms-openapi</artifactId>
-    <version>1.2.6</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
 #### Gradle
 
 ```groovy
-implementation 'com.kmstimes:nexon-kms-openapi:1.2.6'
+implementation 'com.kmstimes:nexon-kms-openapi:1.3.0'
 ```
 
 ### API 키 발급받기
@@ -47,7 +47,9 @@ implementation 'com.kmstimes:nexon-kms-openapi:1.2.6'
 
 ```java
 // API 클라이언트 초기화
-MapleStoryApi api = MapleStoryApi.create("your-api-key");
+MapleStoryApi mapleStoryApi = MapleStoryApi.create("your-api-key");
+// 별도의 플랫폼 api를 사용할 경우
+PlatfomApi platfomApi = PlatformApi.create("your-api-key");
 
 // 캐릭터 OCID 조회
 String ocid = api.Character().getId("캐릭터명").ocid();
@@ -64,11 +66,17 @@ System.out.println("직업: " + basicInfo.character_class());
 
 ```java
 // 빌더를 사용한 커스텀 설정
-MapleStoryApi api = MapleStoryApi.builder()
+MapleStoryApi mapleStoryApi = MapleStoryApi.builder()
     .apiKey("your-api-key")
     .connectTimeout(15) // 연결 타임아웃 15초
     .readTimeout(30)    // 읽기 타임아웃 30초
     .build();
+
+PlatformApi platformApi = PlatformApi.builder()
+                                 .apiKey("your-api-key")
+                                 .connectTimeout(15) // 연결 타임아웃 15초
+                                 .readTimeout(30)    // 읽기 타임아웃 30초
+                                 .build();
 
 // 길드 정보 조회
 GuildBasicResponse guildInfo = api.Guild().getGuildBasic("길드명", "월드명", LocalDate.now());

@@ -18,6 +18,7 @@ import com.kmstimes.nexon.dto.character.otherstat.OtherStatResponse;
 import com.kmstimes.nexon.dto.character.popularity.PopularityResponse;
 import com.kmstimes.nexon.dto.character.propensity.PropensityResponse;
 import com.kmstimes.nexon.dto.character.ringexchange.RingExchangeResponse;
+import com.kmstimes.nexon.dto.character.ringreserve.RingReserveResponse;
 import com.kmstimes.nexon.dto.character.seteffect.SetEffectResponse;
 import com.kmstimes.nexon.dto.character.skill.hexamatrix.HexaMatrixResponse;
 import com.kmstimes.nexon.dto.character.skill.hexamatrixstat.HexaMatrixStatResponse;
@@ -52,18 +53,24 @@ import java.time.LocalDate;
  * </ul>
  */
 public class CharacterApiJsonClient {
+    
     private final CharacterApiJson characterApi;
-    private final DateValidator dateValidator = new DateValidator(LocalDate.of(2023, 12, 21));
-
+    private final DateValidator dateValidator = new DateValidator(LocalDate.of(
+            2023,
+            12,
+            21
+    ));
+    
     /**
      * 생성자: Retrofit 인스턴스를 주입받아 {@link CharacterApiJson} 를 초기화합니다.
      *
      * @param retrofit Retrofit 인스턴스
      */
     public CharacterApiJsonClient(Retrofit retrofit) {
+        
         this.characterApi = retrofit.create(CharacterApiJson.class);
     }
-
+    
     /**
      * 계정의 보유 캐릭터 목록을 조회합니다.
      *
@@ -71,13 +78,13 @@ public class CharacterApiJsonClient {
      * @return {@link AccountResponse} 캐릭터 목록 조회
      */
     public ResponseBody getCharacterList(String userApiKey) {
+        
         ApiKeyValidator.validate(userApiKey);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterList(userApiKey)
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterList(
+                userApiKey));
     }
-
+    
     /**
      * 계정의 업적 정보를 조회합니다.
      *
@@ -85,13 +92,13 @@ public class CharacterApiJsonClient {
      * @return {@link AchievementResponse} 업적 정보 조회
      */
     public ResponseBody getCharacterAchievement(String userApiKey) {
+        
         ApiKeyValidator.validate(userApiKey);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterAchievement(userApiKey)
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterAchievement(
+                userApiKey));
     }
-
+    
     /**
      * 캐릭터 식별자(ocid)를 조회합니다.
      *
@@ -99,14 +106,13 @@ public class CharacterApiJsonClient {
      * @return {@link OcidResponse} 캐릭터 식별자(ocid) 조회
      */
     public ResponseBody getId(String characterName) {
+        
         validateString(characterName);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getId(characterName)
-        );
-
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getId(characterName));
+        
     }
-
+    
     /**
      * 기본 정보를 조회합니다.
      * <p>
@@ -127,13 +133,15 @@ public class CharacterApiJsonClient {
      * @return {@link BasicResponse} 기본 정보 조회
      */
     public ResponseBody getCharacterBasic(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterBasic(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterBasic(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 인기도 정보를 조회합니다.
      *
@@ -142,13 +150,15 @@ public class CharacterApiJsonClient {
      * @return {@link PopularityResponse} 인기도 정보 조회
      */
     public ResponseBody getCharacterPopularity(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterPopularity(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterPopularity(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 종합 능력치 정보를 조회합니다.
      *
@@ -157,13 +167,15 @@ public class CharacterApiJsonClient {
      * @return {@link StatResponse} 종합 능력치 정보 조회
      */
     public ResponseBody getCharacterStat(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterStat(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterStat(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 하이퍼스탯 정보를 조회합니다.
      *
@@ -172,13 +184,15 @@ public class CharacterApiJsonClient {
      * @return {@link HyperStatResponse} 하이퍼스탯 정보 조회
      */
     public ResponseBody getCharacterHyperStat(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterHyperStat(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterHyperStat(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 성향 정보를 조회합니다.
      *
@@ -187,13 +201,15 @@ public class CharacterApiJsonClient {
      * @return {@link PropensityResponse} 성향 정보 조회
      */
     public ResponseBody getCharacterPropensity(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterPropensity(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterPropensity(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 어빌리티 정보를 조회합니다.
      *
@@ -202,13 +218,15 @@ public class CharacterApiJsonClient {
      * @return {@link AbilityResponse} 어빌리티 정보 조회
      */
     public ResponseBody getCharacterAbility(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterAbility(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterAbility(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 장착한 장비 중 캐시 장비를 제외한 나머지 장비 정보를 조회합니다.
      * <p>
@@ -219,13 +237,15 @@ public class CharacterApiJsonClient {
      * @return {@link ItemEquipmentResponse} 장착 장비 정보 조회(캐시 장비 제외)
      */
     public ResponseBody getCharacterItemEquipment(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterItemEquipment(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterItemEquipment(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 장착한 캐시 장비 정보를 조회합니다.
      * <p>
@@ -236,13 +256,15 @@ public class CharacterApiJsonClient {
      * @return {@link CashItemEquipmentResponse} 장착 캐시 장비 정보 조회
      */
     public ResponseBody getCharacterCashItemEquipment(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterCashItemEquipment(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterCashItemEquipment(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 장착한 심볼 정보를 조회합니다.
      *
@@ -251,13 +273,15 @@ public class CharacterApiJsonClient {
      * @return {@link SymbolEquipmentResponse} 장착 심볼 정보 조회
      */
     public ResponseBody getCharacterSymbolEquipment(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterSymbolEquipment(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterSymbolEquipment(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 적용받고 있는 세트 효과 정보를 조회합니다.
      *
@@ -266,13 +290,15 @@ public class CharacterApiJsonClient {
      * @return {@link SetEffectResponse} 적용 세트 효과 정보 조회
      */
     public ResponseBody getCharacterSetEffect(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterSetEffect(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterSetEffect(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 장착 중인 헤어, 성형, 피부 정보를 조회합니다.
      *
@@ -281,13 +307,15 @@ public class CharacterApiJsonClient {
      * @return {@link BeautyEquipmentResponse} 장착 헤어, 성형, 피부 정보 조회
      */
     public ResponseBody getCharacterBeautyEquipment(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterBeautyEquipment(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterBeautyEquipment(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 장착한 안드로이드 정보를 조회합니다.
      *
@@ -296,13 +324,15 @@ public class CharacterApiJsonClient {
      * @return {@link AndroidEquipmentResponse} 장착 안드로이드 정보 조회
      */
     public ResponseBody getCharacterAndroidEquipment(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterAndroidEquipment(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterAndroidEquipment(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 장착한 펫 및 펫 스킬, 장비 정보를 조회합니다.
      *
@@ -311,13 +341,15 @@ public class CharacterApiJsonClient {
      * @return {@link PetEquipmentResponse} 장착 펫 정보 조회
      */
     public ResponseBody getCharacterPetEquipment(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterPetEquipment(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterPetEquipment(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 캐릭터 스킬과 하이퍼 스킬 정보를 조회합니다.
      *
@@ -342,14 +374,17 @@ public class CharacterApiJsonClient {
      * @return {@link SkillResponse} 스킬 정보 조회
      */
     public ResponseBody getCharacterSkill(String ocid, LocalDate date, String grade) {
+        
         OcidValidator.validate(ocid);
         GradeValidator.validate(grade);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterSkill(ocid, date, grade)
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterSkill(
+                ocid,
+                date,
+                grade
+        ));
     }
-
+    
     /**
      * 장착 링크 스킬 정보를 조회합니다.
      *
@@ -358,13 +393,15 @@ public class CharacterApiJsonClient {
      * @return {@link LinkSkillResponse} 장착 링크 스킬 정보 조회
      */
     public ResponseBody getCharacterLinkSkill(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterLinkSkill(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterLinkSkill(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * V매트릭스 슬롯 정보와 장착한 V코어 정보를 조회합니다.
      *
@@ -373,13 +410,15 @@ public class CharacterApiJsonClient {
      * @return {@link VMatrixResponse} V매트릭스 정보 조회
      */
     public ResponseBody getCharacterVMatrix(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterVMatrix(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterVMatrix(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * HEXA 매트릭스에 장착한 HEXA 코어 정보를 조회합니다.
      *
@@ -388,13 +427,15 @@ public class CharacterApiJsonClient {
      * @return {@link HexaMatrixResponse} HEXA 코어 정보 조회
      */
     public ResponseBody getCharacterHexaMatrix(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterHexaMatrix(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterHexaMatrix(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * HEXA 매트릭스에 설정한 HEXA 스탯 정보를 조회합니다.
      *
@@ -403,13 +444,15 @@ public class CharacterApiJsonClient {
      * @return {@link HexaMatrixStatResponse} HEXA 매트릭스 설정 HEXA 스탯 정보 조회
      */
     public ResponseBody getCharacterHexaMatrixStat(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterHexaMatrixStat(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterHexaMatrixStat(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 캐릭터 무릉도장 최고 기록 정보를 조회합니다.
      *
@@ -418,13 +461,15 @@ public class CharacterApiJsonClient {
      * @return {@link DojangResponse} 무릉도장 최고 기록 정보 조회
      */
     public ResponseBody getCharacterDojang(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterDojang(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterDojang(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 능력치에 영향을 주는 요소 중 다른 조회에서 능력치 확인이 어려운 정보를 조회합니다.
      *
@@ -433,13 +478,15 @@ public class CharacterApiJsonClient {
      * @return {@link OtherStatResponse} 기타 능력치 영향 요소 정보 조회
      */
     public ResponseBody getCharacterOtherStat(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterOtherStat(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterOtherStat(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
     /**
      * 링 익스체인지 스킬 등록 장비를 조회합니다.
      *
@@ -448,16 +495,39 @@ public class CharacterApiJsonClient {
      * @return {@link RingExchangeResponse} 링 익스체인지 스킬 등록 장비 조회
      */
     public ResponseBody getCharacterRingExchange(String ocid, LocalDate date) {
+        
         OcidValidator.validate(ocid);
-
-        return NexonApiExceptionHandler.execute(() ->
-                characterApi.getCharacterRingExchange(ocid, dateValidator.validate(date))
-        );
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterRingExchange(
+                ocid,
+                dateValidator.validate(date)
+        ));
     }
-
+    
+    /**
+     * 예비 특수 반지 장착 정보를 조회합니다.
+     *
+     * @param ocid 캐릭터 식별자
+     * @param date 조회 기준일 (KST, YYYY-MM-DD)
+     * @return {@link RingReserveResponse} 예비 특수 반지 장착 정보 조회
+     */
+    public ResponseBody getCharacterRingReserve(String ocid, LocalDate date) {
+        
+        OcidValidator.validate(ocid);
+        
+        return NexonApiExceptionHandler.execute(() -> characterApi.getCharacterRingReserve(
+                ocid,
+                dateValidator.validate(date)
+        ));
+    }
+    
     private void validateString(String string) {
-        if (string == null || string.trim().isEmpty()) {
+        
+        if (string == null || string
+                .trim()
+                .isEmpty()) {
             throw new IllegalArgumentException("null 이거나 비어 있을 수 없습니다.");
         }
     }
+    
 }

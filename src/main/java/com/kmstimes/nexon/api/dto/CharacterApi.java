@@ -18,6 +18,7 @@ import com.kmstimes.nexon.dto.character.otherstat.OtherStatResponse;
 import com.kmstimes.nexon.dto.character.popularity.PopularityResponse;
 import com.kmstimes.nexon.dto.character.propensity.PropensityResponse;
 import com.kmstimes.nexon.dto.character.ringexchange.RingExchangeResponse;
+import com.kmstimes.nexon.dto.character.ringreserve.RingReserveResponse;
 import com.kmstimes.nexon.dto.character.seteffect.SetEffectResponse;
 import com.kmstimes.nexon.dto.character.skill.hexamatrix.HexaMatrixResponse;
 import com.kmstimes.nexon.dto.character.skill.hexamatrixstat.HexaMatrixStatResponse;
@@ -318,4 +319,15 @@ public interface CharacterApi {
      */
     @GET("maplestory/v1/character/ring-exchange-skill-equipment")
     Call<RingExchangeResponse> getCharacterRingExchange(@Query("ocid") String ocid, @Query("date") LocalDate date);
+    
+    /**
+     * 예비 특수 반지 장착 정보를 조회합니다.
+     *
+     * @param ocid 캐릭터 식별자
+     * @param date 조회 기준일 (KST, YYYY-MM-DD)
+     * @return {@link RingReserveResponse} 예비 특수 반지 장착 정보 조회
+     */
+    @GET("maplestory/v1/character/ring-reserve-skill-equipment")
+    Call<RingReserveResponse> getCharacterRingReserve(@Query("ocid") String ocid, @Query("date") LocalDate date);
+    
 }

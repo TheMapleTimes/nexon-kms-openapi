@@ -16,6 +16,7 @@ import java.util.List;
  * @param scroll_upgradable 주문서 잔여 횟수
  * @param item_shape        아이템 외형
  * @param item_shape_icon   아이템 외형 아이콘
+ * @param item_date_expire  아이템 만료시간 (KST, 분 단위는 일괄 0으로 표기, null:무제한, -1:미착용)
  */
 public record PetEquipment(
         String item_name,
@@ -25,7 +26,8 @@ public record PetEquipment(
         Long scroll_upgrade,
         Long scroll_upgradable,
         String item_shape,
-        String item_shape_icon
+        String item_shape_icon,
+        String item_date_expire
 
 ) {
 }

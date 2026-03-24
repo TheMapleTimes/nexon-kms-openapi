@@ -17,6 +17,7 @@ import com.kmstimes.nexon.dto.character.list.AccountResponse;
 import com.kmstimes.nexon.dto.character.otherstat.OtherStatResponse;
 import com.kmstimes.nexon.dto.character.propensity.PropensityResponse;
 import com.kmstimes.nexon.dto.character.ringexchange.RingExchangeResponse;
+import com.kmstimes.nexon.dto.character.ringreserve.RingReserveResponse;
 import com.kmstimes.nexon.dto.character.seteffect.SetEffectResponse;
 import com.kmstimes.nexon.dto.character.skill.hexamatrix.HexaMatrixResponse;
 import com.kmstimes.nexon.dto.character.skill.hexamatrixstat.HexaMatrixStatResponse;
@@ -197,7 +198,16 @@ public class CharacterApiTest {
 
     @Test
     void characterRingExchange(){
-        RingExchangeResponse res = api.Character().getCharacterRingExchange(ocid, null);
+        RingExchangeResponse res = api.Character().getCharacterRingExchange(ocid, date);
+        assertNotNull(res);
+        System.out.println(res);
+    }
+    
+    @Test
+    void characterRingReserve(){
+        
+        RingReserveResponse res = api.Character()
+                                     .getCharacterRingReserve(ocid, null);
         assertNotNull(res);
         System.out.println(res);
     }
